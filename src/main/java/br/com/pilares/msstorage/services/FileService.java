@@ -63,25 +63,47 @@ public class FileService {
 	}
 	
 	private boolean verifyFolderInstitutionHash(String institution, String institutionHash) {
-		return new java.io.File(basePath+institution+"\\"+institutionHash).exists();
+		return new java.io.File(basePath+
+				institution+
+				"//"+
+				institutionHash).exists();
 	}
 	
 	private boolean createFolderInstitutionHash(String institution, String institutionHash) {
-		new java.io.File(basePath+institution+"\\"+institutionHash).mkdir();
+		new java.io.File(basePath+institution+
+				"//"+
+				institutionHash).mkdir();
 		return true;
 	}
 	
 	private boolean verifyFolderArtifact(String institution,String institutionHash, Artifact artifact) {
-		return new java.io.File(basePath+institution+"\\"+institutionHash+"\\"+artifact).exists();
+		return new java.io.File(basePath+institution+
+				"//"+
+				institutionHash+
+				"//"+
+				artifact).exists();
 	}
 	
 	private boolean createFolderArtifact(String institution, String institutionHash, Artifact artifact) {
-		new java.io.File(basePath+institution+"\\"+institutionHash+"\\"+artifact).mkdir();
+		new java.io.File(basePath+institution+
+				"//"+
+				institutionHash+
+				"//"+
+				artifact).mkdir();
+		
 		return true;
 	}
 	
 	private String getPath(File file) {
-		return basePath+file.getInstitution()+"\\"+file.getInstitutionHash()+"\\"+file.getArtifact()+"\\"+file.getArtifactHash()+getExtension(file.getExtension());
+		 
+		return basePath+file.getInstitution()+
+				"//"+
+				file.getInstitutionHash()+
+				"//"+
+				file.getArtifact()+
+				"//"+
+				file.getArtifactHash()+
+				getExtension(file.getExtension());
 	}
 	
 	private String getExtension(String extension) {
